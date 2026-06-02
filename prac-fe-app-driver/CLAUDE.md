@@ -1,14 +1,14 @@
 # Driver App Guide (prac-fe-app-driver)
 
 ## Build & Dev Commands
-- **Install Dependencies:** `flutter pub get`
-- **Run Development Server (Clean & Run):** `flutter clean && flutter pub get && flutter run`
-- **Build Project (Android APK):** `flutter build apk --release`
-- **Build Project (iOS):** `flutter build ios --release --no-codesign`
-- **Lint / Code Style Check:** `flutter analyze`
-- **Format Code:** `flutter format .`
+- **Install Dependencies:** `npm install`
+- **Run Development Server:** `npx expo start`
+- **Build Project (Android):** `eas build --platform android`
+- **Build Project (iOS):** `eas build --platform ios`
+- **Lint / Code Style Check:** `npm run lint`
+- **Type Check:** `npx tsc --noEmit`
 
 ## Tech Stack & Rules
-- Language: Dart
-- Framework: Flutter
+- Language: TypeScript
+- Framework: React Native (Expo)
 - Rule: Do not import any files from outside this `prac-fe-app-driver` directory.

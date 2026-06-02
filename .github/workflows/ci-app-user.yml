@@ -15,21 +15,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: subosito/flutter-action@v2
+      - uses: actions/setup-node@v4
         with:
-          # TODO: 'stable' 대신 특정 버전으로 고정 (예: '3.x.x')
-          flutter-version: 'stable'
-          cache: true
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: prac-fe-app-user/package-lock.json
 
       - name: Install dependencies
-        run: flutter pub get --enforce-lockfile
+        run: npm ci
 
-      - name: Analyze
-        run: flutter analyze
+      - name: Lint
+        run: npm run lint
+
+      - name: Type check
+        run: npx tsc --noEmit
 
       - name: Test
-        run: flutter test
-
-      # 아직 build 단계는 필요 없어서 주석 처리
-      # - name: Build APK
-      #   run: flutter build apk --release
+        run: npm test

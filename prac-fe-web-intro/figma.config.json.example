@@ -1,0 +1,6 @@
+{
+  "codeConnect": {
+    "include": ["src/**/*.figma.tsx", "app/**/*.figma.tsx"],
+    "figmaFile": "https://www.figma.com/design/<YOUR_FILE_KEY>/<FILE_NAME>?node-id=<NODE_ID>"
+  }
+}

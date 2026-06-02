@@ -43,7 +43,7 @@ Pull these out (some may be missing — see below):
 - **the task itself** — the natural-language description of what to build.
 
 If **folder** is missing, try to infer it from the description (e.g. mentions of
-Flutter/driver/user app vs. admin web vs. intro site), but if it's genuinely
+React Native/driver/user app vs. admin web vs. intro site), but if it's genuinely
 ambiguous, ask — guessing wrong puts the issue on the wrong board.
 
 ## Workflow
@@ -71,17 +71,16 @@ lot: the four apps are **not** the same stack.
 
 | Folder | Stack |
 |---|---|
-| prac-fe-app-driver | Flutter / Dart |
-| prac-fe-app-user | Flutter / Dart |
+| prac-fe-app-driver | React Native (Expo) / TypeScript |
+| prac-fe-app-user | React Native (Expo) / TypeScript |
 | prac-fe-web-management | React + Vite / TypeScript |
 | prac-fe-web-intro | Next.js / TypeScript |
 
 This is why grounding matters: a request might name a library that doesn't fit
-the stack (e.g. toss's `overlay-kit` is a React library — it has no meaning in a
-Flutter app). When that happens, don't blindly copy the library in. Note the
-mismatch and suggest the stack-appropriate equivalent (for Flutter modals,
-`showDialog` / `showModalBottomSheet` or a `flutter_hooks`-style overlay), so
-the issue is actually actionable for whoever picks it up.
+the stack (e.g. a web-only library that has no React Native equivalent). When
+that happens, don't blindly copy the library in. Note the mismatch and suggest
+the stack-appropriate equivalent, so the issue is actually actionable for
+whoever picks it up.
 
 ### 3. Fill in every section
 

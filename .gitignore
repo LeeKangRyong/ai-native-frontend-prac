@@ -12,15 +12,19 @@ prac-fe-web-intro/.omc/
 prac-fe-web-management/node_modules/
 prac-fe-web-intro/node_modules/
 
-# Flutter build artifacts
-prac-fe-app-driver/.dart_tool/
-prac-fe-app-driver/build/
-prac-fe-app-driver/.flutter-plugins
-prac-fe-app-driver/.flutter-plugins-dependencies
-prac-fe-app-user/.dart_tool/
-prac-fe-app-user/build/
-prac-fe-app-user/.flutter-plugins
-prac-fe-app-user/.flutter-plugins-dependencies
+# React Native / Expo build artifacts
+prac-fe-app-driver/node_modules/
+prac-fe-app-driver/.expo/
+prac-fe-app-driver/dist/
+prac-fe-app-user/node_modules/
+prac-fe-app-user/.expo/
+prac-fe-app-user/dist/
+
+# figma config (contains file key — keep out of public repos)
+prac-fe-app-driver/figma.config.json
+prac-fe-app-user/figma.config.json
+prac-fe-web-management/figma.config.json
+prac-fe-web-intro/figma.config.json
 
 # env
 prac-fe-app-driver/.env
