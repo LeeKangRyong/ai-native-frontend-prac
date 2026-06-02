@@ -28,7 +28,7 @@ jobs:
         run: npm run lint
 
       - name: Test
-        run: npm test
+        run: npm test -- --watchAll=false
 
       # 아직 build 단계는 필요 없어서 주석 처리
       # - name: Build
