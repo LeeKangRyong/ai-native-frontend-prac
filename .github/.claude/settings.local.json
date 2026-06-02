@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(winget install --id GitHub.cli --silent --accept-package-agreements --accept-source-agreements 2>&1)",
+      "Read(//c/Users/gaiog/ai-native-frontend-prac/**)",
+      "Bash(ls -la .claude)",
+      "Bash(ls .github/workflows)",
+      "PowerShell($env:Path = [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"User\"\\); $gh = Get-Command gh -ErrorAction SilentlyContinue; if \\($gh\\) { \"gh: $\\($gh.Source\\)\"; gh --version 2>&1 | Select-Object -First 1; \"---AUTH---\"; gh auth status 2>&1 | Select-Object -First 6 } else { \"gh still not on PATH\" })",
+      "WebSearch",
+      "Bash(mkdir -p \"C:/Users/gaiog/ai-native-frontend-prac/.claude/skills/frontend-issue-publisher-workspace/iteration-1/eval-0-flutter-stack-mismatch/with_skill/outputs\")",
+      "Bash(mkdir -p \"C:/Users/gaiog/ai-native-frontend-prac/.claude/skills/frontend-issue-publisher-workspace/iteration-1/eval-1-react-with-story/with_skill/outputs\")",
+      "Bash(mkdir -p \"C:/Users/gaiog/ai-native-frontend-prac/.claude/skills/frontend-issue-publisher-workspace/iteration-1/eval-2-folder-inference-bug/with_skill/outputs\")",
+      "Bash(mkdir -p \"C:/Users/gaiog/ai-native-frontend-prac/.claude/skills/frontend-issue-publisher-workspace/iteration-2/eval-1-react-with-story/with_skill/outputs\")",
+      "Bash(mkdir -p \"C:/Users/gaiog/ai-native-frontend-prac/.claude/skills/frontend-issue-publisher-workspace/iteration-2/eval-2-folder-inference-bug/with_skill/outputs\")"
+    ]
+  }
+}

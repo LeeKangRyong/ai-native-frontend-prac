@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(flutter pub get)",
+      "Bash(flutter clean*)",
+      "Bash(flutter run*)",
+      "Bash(flutter build*)",
+      "Bash(flutter analyze*)",
+      "Bash(flutter format*)",
+      "Bash(dart*)"
+    ],
+    "deny": [
+      "Bash(cd ../prac-fe-app-driver*)",
+      "Bash(cd ../prac-fe-web-management*)",
+      "Bash(cd ../prac-fe-web-intro*)"
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install)",
+      "Bash(npm run dev)",
+      "Bash(npm run build)",
+      "Bash(npm run lint)",
+      "Bash(npm run*)",
+      "Bash(npx*)",
+      "Bash(yarn*)"
+    ],
+    "deny": [
+      "Bash(cd ../prac-fe-app-driver*)",
+      "Bash(cd ../prac-fe-app-user*)",
+      "Bash(cd ../prac-fe-web-intro*)"
+    ]
+  }
+}

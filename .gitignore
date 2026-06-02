@@ -1,0 +1,29 @@
+# skill-creator eval scaffolding (test output, reproducible)
+.claude/skills/*-workspace/
+
+# .omc
+.omc/
+prac-fe-app-driver/.omc/
+prac-fe-app-user/.omc/
+prac-fe-web-management/.omc/
+prac-fe-web-intro/.omc/
+
+# node_modules (web only)
+prac-fe-web-management/node_modules/
+prac-fe-web-intro/node_modules/
+
+# Flutter build artifacts
+prac-fe-app-driver/.dart_tool/
+prac-fe-app-driver/build/
+prac-fe-app-driver/.flutter-plugins
+prac-fe-app-driver/.flutter-plugins-dependencies
+prac-fe-app-user/.dart_tool/
+prac-fe-app-user/build/
+prac-fe-app-user/.flutter-plugins
+prac-fe-app-user/.flutter-plugins-dependencies
+
+# env
+prac-fe-app-driver/.env
+prac-fe-app-user/.env
+prac-fe-web-management/.env
+prac-fe-web-intro/.env

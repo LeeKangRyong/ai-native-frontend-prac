@@ -1,0 +1,35 @@
+name: CI - User App
+
+on:
+  push:
+    paths:
+      - 'prac-fe-app-user/**'
+
+jobs:
+  lint-and-build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: prac-fe-app-user
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          # TODO: 'stable' 대신 특정 버전으로 고정 (예: '3.x.x')
+          flutter-version: 'stable'
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get --enforce-lockfile
+
+      - name: Analyze
+        run: flutter analyze
+
+      - name: Test
+        run: flutter test
+
+      # 아직 build 단계는 필요 없어서 주석 처리
+      # - name: Build APK
+      #   run: flutter build apk --release
