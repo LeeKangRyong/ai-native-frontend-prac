@@ -1,0 +1,201 @@
+{
+  "skill_name": "frontend-tdd-runner",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Run TDD validation for the prac-fe-web-management sub-app. Assume all 23 unit tests and 5 E2E tests pass on the first run.",
+      "expected_output": "Success report output ([frontend-tdd-runner] ✅) with no fix loop triggered. Cleanup step also runs.",
+      "assertions": [
+        {
+          "text": "Success report format ([frontend-tdd-runner] ✅) is output",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "No debugger/executor agent delegation occurs",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "Cleanup step (port kill) is mentioned",
+          "passed": null,
+          "evidence": null
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Run TDD runner for prac-fe-app-user. There's a type error related to a null check in LoginScreen.test.tsx.",
+      "expected_output": "tsc failure detected → debugger agent analyzes → executor agent fixes → tsc + npm test re-run → passes after 1 fix. Success report shows fix count.",
+      "assertions": [
+        {
+          "text": "tsc --noEmit step runs because this is a mobile app",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "debugger agent delegation occurs",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "executor agent delegation occurs and only files inside the sub-app directory are mentioned for modification",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "Success report includes the number of fixes applied",
+          "passed": null,
+          "evidence": null
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Run TDD validation for prac-fe-web-intro. Note that Playwright is not in package.json.",
+      "expected_output": "E2E step is SKIPPED (not an error). Only unit tests run and pass. Report shows E2E skipped due to Playwright not installed.",
+      "assertions": [
+        {
+          "text": "package.json devDependencies are checked for @playwright/test presence",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "E2E step is treated as SKIP, not an error",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "tsc step does not run because this is a web app",
+          "passed": null,
+          "evidence": null
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Run TDD runner for prac-fe-web-management. E2E keeps failing — page.goto('/login') can't find the selector. It's been failing after 2 fix attempts.",
+      "expected_output": "E2E fix loop runs up to 2 attempts → still failing → failure report. Report includes fix history. Cleanup runs. Debugger checks test code/mocking/config before feature code.",
+      "assertions": [
+        {
+          "text": "E2E debugger inspects test code (page.goto, selectors) before feature code",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "e2e_iteration does not exceed the 2-attempt limit",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "Failure report ([frontend-tdd-runner] ❌) includes fix history",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "Cleanup step runs even after failure",
+          "passed": null,
+          "evidence": null
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Run TDD validation for prac-fe-app-driver. There are serious type errors that keep reappearing after 3 fix attempts.",
+      "expected_output": "tsc fails → fix loop runs 3 times, all fail → failure report. Iteration counter does not exceed 3. Fix history includes all 3 attempts.",
+      "assertions": [
+        {
+          "text": "Iteration counter does not exceed 3 (no 4th attempt)",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "Failure report includes fix history with all attempts recorded",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "Report includes instruction to review manually (commit blocked)",
+          "passed": null,
+          "evidence": null
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Run TDD runner for prac-fe-app-user and make sure ports are cleaned up after. There's a dev server running on port 5173.",
+      "expected_output": "After tests complete, Cleanup step executes port kill commands including port 5173. Report shows Cleanup completed.",
+      "assertions": [
+        {
+          "text": "Cleanup step includes a kill command for port 5173",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "playwright/chromium process cleanup is also mentioned",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "Cleanup always runs regardless of test pass/fail",
+          "passed": null,
+          "evidence": null
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Show me what the TDD runner would do for prac-fe-app-user without actually running it. dry-run",
+      "expected_output": "[DRY-RUN] output. Shows planned execution order (tsc + npm test + E2E skip + Cleanup) without running any actual commands.",
+      "assertions": [
+        {
+          "text": "[DRY-RUN] header is output",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "tsc step is shown as planned because this is a mobile app",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "E2E is shown as SKIPPED (mobile app)",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "No actual npm test or tsc commands are executed",
+          "passed": null,
+          "evidence": null
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Show me what would run for prac-fe-web-management tdd-runner without executing it. Playwright is installed.",
+      "expected_output": "[DRY-RUN] output. tsc SKIPPED (web), npm test + Playwright planned, loop counts (3/2) shown, Playwright detected.",
+      "assertions": [
+        {
+          "text": "tsc is shown as SKIPPED (web app)",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "Playwright planned execution and max 2 loop attempts are shown",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "Playwright detected (✅) is output",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "No actual test commands are executed",
+          "passed": null,
+          "evidence": null
+        }
+      ]
+    }
+  ]
+}
