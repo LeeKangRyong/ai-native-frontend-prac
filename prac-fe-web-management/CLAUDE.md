@@ -1,10 +1,11 @@
 # Manager Web Guide (prac-fe-web-management)
 
 ## Build & Dev Commands
-- **Install Dependencies:** `npm install` (or yarn)
+- **Install Dependencies:** `npm install`
 - **Run Development Server:** `npm run dev`
 - **Build Project:** `npm run build`
 - **Lint / Style Check:** `npm run lint`
+- **Test:** `npm test`
 
 ## Tech Stack & Rules
 - Language: TypeScript
