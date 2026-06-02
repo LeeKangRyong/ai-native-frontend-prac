@@ -9,7 +9,7 @@
 
 ### Branch Naming Convention
 Before starting any task, create a dedicated branch:
-- Format: `[type]([scope])/# [issue_number]-[description]`
+- Format: `[type]([scope])/#[issue_number]-[description]`
 - Example: `feat(user)/#3-ios`
 
 ### Commit Message Convention
@@ -21,5 +21,5 @@ Follow AngularJS Convention. The body/subject must be in **Korean (한글) and u
   - `fix(management): 로그인 세션 만료 얼럿 추가 #12`
 
 ## 3. Issue Generation
-When instructed to create an issue, use the template: `./.github/ISSUE_TEMPLATE/task.md`.
+When instructed to create an issue, use the template: `./.github/ISSUE_TEMPLATE/task_ex.md`.
 - Read the markdown template and generate the issue content precisely based on the prompt.
