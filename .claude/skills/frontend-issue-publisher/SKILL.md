@@ -129,6 +129,24 @@ entirely for trivial tasks — don't manufacture links to fill space.
   with `gh label list` and create any genuinely missing one with
   `gh label create "<name>"` (confirm with the user before creating new labels).
 
+### 5-1. Dry-run 모드
+
+발화에 `dry-run`, `확인만 해줘`, `올리지 말고`, `미리 보기만` 중 하나가 포함되면 dry-run 모드로 동작한다.
+
+- **단계 1~5는 그대로 실행**한다 (템플릿 읽기, 스택 확인, 섹션 작성, 링크 추가, 제목/라벨 조립 모두 실제 실행).
+- **단계 6에서 멈춘다**: `gh issue create`를 실행하지 않고, 대신 생성될 이슈 전체를 출력한다.
+- 출력 형식:
+  ```
+  [DRY-RUN] 실제로는 생성하지 않음
+  제목: [TASK-FE] ...
+  folder: prac-fe-...
+  labels: task, feature
+
+  --- BODY ---
+  ## 태스크 설명
+  ...
+  ```
+
 ### 6. Preview, confirm, then publish
 
 Publishing creates a real issue others will see, so show the user the full
