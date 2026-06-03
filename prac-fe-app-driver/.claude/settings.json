@@ -6,7 +6,9 @@
       "Bash(npm run*)",
       "Bash(npx expo*)",
       "Bash(npx tsc*)",
-      "Bash(eas build*)"
+      "Bash(eas build*)",
+      "Bash(npx storybook*)",
+      "Bash(npx sb*)"
     ],
     "deny": [
       "Bash(cd ../prac-fe-app-user*)",
