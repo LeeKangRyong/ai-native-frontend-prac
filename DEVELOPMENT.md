@@ -34,11 +34,16 @@ Before starting any task, create a dedicated branch:
 
 ### Commit Message Convention
 Follow AngularJS Convention. The body/subject must be in **Korean (한글) and under 50 characters**.
-- **Allowed Scopes:** `driver`, `user`, `manager`, `intro`
+- **Allowed Scopes:** `driver`, `user`, `manager`, `intro`, `root`
 - **Format:** `[type]([scope]): [Subject in Korean] #[issue_number]`
 - **Examples:**
   - `feat(driver): 실시간 경로 추적 오류 해결 #3`
   - `fix(manager): 로그인 세션 만료 얼럿 추가 #12`
+  - `chore(root): 루트 커밋 컨벤션 정의`
+
+#### `root` scope 규칙
+- **적용 대상:** `.claude/`, `CLAUDE.md`, `DEVELOPMENT.md`, `README.md`, `.github/`, `.gitattributes`, `start-tmux.sh` 등 서브앱 디렉토리 밖의 모든 파일
+- **issue# 선택 사항:** 유지보수·설정 변경은 트래킹 이슈 없이 진행하는 경우가 많으므로 생략 가능
 
 ## 3. Issue Generation
 When instructed to create an issue, use the template: `./.github/ISSUE_TEMPLATE/task_ex.md`.

@@ -49,7 +49,7 @@ Read `DEVELOPMENT.md` on each invocation to confirm that the type/scope whitelis
 
 - **Commit format**: `[type]([scope]): [Korean title ≤50 chars] #[issue number]`
 - **Allowed types**: `feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert`
-- **Allowed scopes**: `driver, user, manager, intro`
+- **Allowed scopes**: `driver, user, manager, intro, root`
 
 ---
 
@@ -107,7 +107,7 @@ Only runs when CWD-first detection did not match (i.e., Claude is running from t
 
 - **Single sub-app** → scope confirmed, continue.
 - **Changes span 2+ sub-apps** → monorepo isolation violation. One commit must cover only one sub-app. Ask the user which sub-app to commit now and guide them to split the rest into a separate commit.
-- **Only root files changed** (e.g., `.github/`, root `*.md`) → scope cannot be auto-detected. Ask the user to specify scope explicitly.
+- **Only root files changed** (e.g., `.github/`, root `*.md`, `.claude/`, `.gitattributes`) → scope auto-set to `root`. Do not ask the user.
 - If the user's utterance names a scope and it differs from the auto-detected scope, warn and ask for confirmation. Honor user intent but never proceed with the wrong scope.
 
 ---
@@ -145,7 +145,7 @@ Build the message as: `[type]([scope]): [Korean title] #[issue number]`
 - **type**: must be from the allowed list (`feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert`). Reject and request re-input if not.
 - **scope**: must match the scope confirmed in Step 2.
 - **Korean title**: ≤50 characters. If over, shorten and confirm with the user.
-- **Issue number**: `#<number>` required. Try to extract from the utterance, branch name, or recent issues. If not found, **do not guess** — ask the user.
+- **Issue number**: `#<number>` required for sub-app scopes (`driver`, `user`, `manager`, `intro`). Try to extract from the utterance, branch name, or recent issues. If not found, **do not guess** — ask the user. **Optional for `root` scope** — omit if not provided.
 
 ---
 
