@@ -61,7 +61,9 @@ REPO_ROOT=$(git rev-parse --show-toplevel)
 # Windows PowerShell
 $REPO_ROOT = git rev-parse --show-toplevel
 # read: $REPO_ROOT\.github\ISSUE_TEMPLATE\task_ex.md
-``` The template has two parts:
+```
+
+The template has two parts:
 
 - **Frontmatter** (the `---` block): carries the `title` prefix (`[TASK-FE] `),
   the `folder` field, and the default `labels`. Keep this block at the top of
