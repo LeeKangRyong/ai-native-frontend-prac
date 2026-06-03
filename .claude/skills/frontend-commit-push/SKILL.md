@@ -31,18 +31,6 @@ Detect the shell environment once at invocation start and use it throughout all 
 
 ---
 
-## Environment Detection
-
-Detect the shell environment once at invocation start and use it throughout all steps:
-
-| Test | WSL / bash | Windows PowerShell / CMD |
-|---|---|---|
-| Detect shell | `uname -s` → `Linux` | `uname` not found, or `$IsWindows` is `$true` |
-| Current dir name | `basename "$(pwd)"` | `Split-Path -Leaf (Get-Location)` |
-| Full path | `pwd` | `(Get-Location).Path` |
-
----
-
 ## Pre-condition — Re-read conventions every run
 
 Read `DEVELOPMENT.md` on each invocation to confirm that the type/scope whitelist and message format have not changed. The content below reflects the current baseline; the file takes precedence.
@@ -136,6 +124,15 @@ Run the following inside the detected sub-app directory. Stop immediately if any
 
 ---
 
+## Step 4 — Branch & Remote State Check
+
+Before assembling the commit message, verify git state and prepare the target branch.
+
+1. Run `git status --porcelain` to check for merge conflict markers (`UU`, `AA`, `DD`). If found, stop immediately.
+2. Verify no uncommitted changes exist outside the target sub-app directory. If changes span multiple sub-apps, warn the user and stop.
+
+---
+
 ## Step 5 — Assemble & Validate Commit Message
 
 Build the message as: `[type]([scope]): [Korean title] #[issue number]`
@@ -149,15 +146,17 @@ Build the message as: `[type]([scope]): [Korean title] #[issue number]`
 
 ---
 
-## Step 6 — Preview → Confirm → Commit → Push
+## Step 6 — Preview → Confirm → Checkout → Commit → Push → Return
 
 Show the user the commit message and push command, and wait for explicit approval.
 
-After approval:
+After approval, execute the following sequence without interruption:
 
-1. `git add` — restrict scope to the target sub-app directory.
-2. `git commit -m "..."` — commit with the confirmed message.
-3. `git push origin <target-branch>` — push to the branch that corresponds to the detected scope:
+1. **Pre-checkout safety check**: Run `git status --porcelain` and confirm no uncommitted changes exist outside the target sub-app directory. If any exist, warn the user and stop.
+2. `git checkout <target-branch>` — switch to the target branch before committing. If the local branch does not exist, run `git checkout -b <target-branch> origin/<target-branch>` to create a local tracking branch.
+3. `git add` — restrict scope to the target sub-app directory only.
+4. `git commit -m "..."` — commit with the confirmed message.
+5. `git push origin <target-branch>` — push only this branch to origin:
 
    | Scope   | Target Branch |
    |---------|---------------|
@@ -166,6 +165,8 @@ After approval:
    | manager | manager-web   |
    | intro   | intro-web     |
    | root    | main          |
+
+6. `git checkout main` — return to main branch after push. **Skip this step if scope is `root`** (already on main).
 
 On success, report the commit hash to the user.
 

@@ -1,16 +1,23 @@
-﻿{
+{
   "permissions": {
     "allow": [
       "Bash(npm install)",
       "Bash(npm ci)",
-      "Bash(npm run dev)",
-      "Bash(npm run build)",
-      "Bash(npm run lint)",
       "Bash(npm run*)",
       "Bash(npx*)",
       "Bash(npx storybook*)",
       "Bash(npx sb*)",
-      "Bash(yarn*)"
+      "Bash(yarn*)",
+      "Bash(git status*)",
+      "Bash(git diff*)",
+      "Bash(git ls-files*)",
+      "Bash(git fetch*)",
+      "Bash(git branch*)",
+      "Bash(git checkout*)",
+      "Bash(git add*)",
+      "Bash(git commit*)",
+      "Bash(git push*)",
+      "Bash(git log*)"
     ],
     "deny": [
       "Bash(cd ../prac-fe-app-driver*)",

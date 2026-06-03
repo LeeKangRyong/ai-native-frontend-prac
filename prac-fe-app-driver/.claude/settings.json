@@ -1,4 +1,4 @@
-﻿{
+{
   "permissions": {
     "allow": [
       "Bash(npm install)",
@@ -8,7 +8,17 @@
       "Bash(npx tsc*)",
       "Bash(eas build*)",
       "Bash(npx storybook*)",
-      "Bash(npx sb*)"
+      "Bash(npx sb*)",
+      "Bash(git status*)",
+      "Bash(git diff*)",
+      "Bash(git ls-files*)",
+      "Bash(git fetch*)",
+      "Bash(git branch*)",
+      "Bash(git checkout*)",
+      "Bash(git add*)",
+      "Bash(git commit*)",
+      "Bash(git push*)",
+      "Bash(git log*)"
     ],
     "deny": [
       "Bash(cd ../prac-fe-app-user*)",
