@@ -1,4 +1,4 @@
-﻿---
+---
 name: frontend-commit-push
 description: >-
   Use this skill whenever the user wants to commit and/or push finished work

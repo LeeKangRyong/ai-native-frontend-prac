@@ -1,4 +1,4 @@
-﻿---
+---
 name: frontend-tdd-runner
 description: >-
   TDD validation skill for this monorepo's four sub-apps (prac-fe-app-driver,

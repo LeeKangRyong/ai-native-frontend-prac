@@ -1,4 +1,4 @@
-﻿---
+---
 name: frontend-issue-publisher
 description: >-
   Create and publish a GitHub issue using this repo's Frontend Task template
