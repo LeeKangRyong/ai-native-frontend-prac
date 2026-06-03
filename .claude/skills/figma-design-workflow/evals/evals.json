@@ -1,4 +1,4 @@
-﻿{
+{
   "skill_name": "figma-design-workflow",
   "evals": [
     {
@@ -78,10 +78,10 @@
     {
       "id": 3,
       "prompt": "디자인 시작해줘",
-      "expected_output": "Skill detects ambiguity (no app specified). Asks user whether to design for driver or user app before reading any files or generating a proposal.",
+      "expected_output": "Skill detects ambiguity (no app specified). Asks user which of the 4 apps to design for — driver, user, web-manager, or web-intro — before reading any files or generating a proposal.",
       "assertions": [
         {
-          "text": "Skill asks user to specify which app (driver or user) before proceeding",
+          "text": "Skill asks user to specify which app before proceeding",
           "passed": null,
           "evidence": null
         },
@@ -91,7 +91,7 @@
           "evidence": null
         },
         {
-          "text": "Both prac-fe-app-driver and prac-fe-app-user are mentioned as options",
+          "text": "All four apps are mentioned as options: prac-fe-app-driver, prac-fe-app-user, prac-fe-web-manager, prac-fe-web-intro",
           "passed": null,
           "evidence": null
         },
@@ -137,25 +137,35 @@
     {
       "id": 5,
       "prompt": "prac-fe-web-manager 관리자 웹 디자인 시작해줘",
-      "expected_output": "Skill recognizes prac-fe-web-manager is out of scope (web app, not mobile). Refuses to proceed and explains this skill is only for prac-fe-app-driver and prac-fe-app-user.",
+      "expected_output": "Skill identifies prac-fe-web-manager as a web app (React + Vite SPA). Reads .ai/ files from web-manager directory. Outputs a Design Proposal using the web template: Frame Standard shows 1440×900 (no Safe Area), Page/View Inventory instead of Screen Inventory. Ends with approval request.",
       "assertions": [
         {
-          "text": "Skill refuses to proceed for prac-fe-web-manager",
+          "text": "Skill proceeds (does NOT refuse or say web is out of scope)",
           "passed": null,
           "evidence": null
         },
         {
-          "text": "Explanation mentions this skill is for mobile apps only (driver and user)",
+          "text": "prac-fe-web-manager is identified as the target app",
           "passed": null,
           "evidence": null
         },
         {
-          "text": "No Design Proposal is generated for web-manager",
+          "text": "Frame Standard in the proposal shows 1440×900 (or 1440x900), not 390×844",
           "passed": null,
           "evidence": null
         },
         {
-          "text": "prac-fe-app-driver and/or prac-fe-app-user are mentioned as the valid targets",
+          "text": "Safe Area is NOT mentioned as a required overlay in the proposal",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "Response ends with an approval request asking the user to confirm the structure before Figma",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "No Figma MCP call is made (no '[FIGMA CALL:]' in output)",
           "passed": null,
           "evidence": null
         }
@@ -188,6 +198,80 @@
         },
         {
           "text": "Response ends with approval gate before any Figma generation",
+          "passed": null,
+          "evidence": null
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "web-intro 인트로 페이지 디자인해줘",
+      "expected_output": "Skill identifies prac-fe-web-intro as a Next.js App Router web app. Reads .ai/ files from web-intro directory. Outputs a Design Proposal using the web template: Frame Standard 1440×900 (no Safe Area), Page/View Inventory with App Router path notes (app/ directory). Ends with approval request.",
+      "assertions": [
+        {
+          "text": "prac-fe-web-intro is identified as the target app",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "Frame Standard in the proposal shows 1440×900 (or 1440x900), not 390×844",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "Safe Area is NOT mentioned as a required overlay",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "The proposal uses 'Page/View Inventory' or equivalent — not 'Screen Inventory' terminology",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "Next.js or App Router is acknowledged in the proposal (routing structure or page path format)",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "Response ends with an approval request asking the user to confirm the structure before Figma",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "No Figma MCP call is made in this response",
+          "passed": null,
+          "evidence": null
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "web-manager 관리자 대시보드 확인만 해줘",
+      "expected_output": "[DRY-RUN] header at top, web design proposal with Frame Standard 1440×900, no Safe Area mentioned, Page/View Inventory section present, no Figma MCP call made.",
+      "assertions": [
+        {
+          "text": "[DRY-RUN] header appears at the top of the response",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "prac-fe-web-manager is identified as the target app",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "Frame Standard shows 1440×900 (not 390×844)",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "No Figma MCP call is made",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "The approval gate message ('구현 시작해줘') is NOT present — dry-run stops before it",
           "passed": null,
           "evidence": null
         }
