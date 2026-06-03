@@ -50,8 +50,18 @@ ambiguous, ask — guessing wrong puts the issue on the wrong board.
 
 ### 1. Read the template fresh
 
-Read `.github/ISSUE_TEMPLATE/task_ex.md` every time rather than relying on
-memory — the team may change it. The template has two parts:
+Read the template every time rather than relying on memory — the team may change it.
+Resolve the path from the git repository root to handle any CWD (sub-app dir or monorepo root):
+
+```bash
+# WSL / bash
+REPO_ROOT=$(git rev-parse --show-toplevel)
+# read: $REPO_ROOT/.github/ISSUE_TEMPLATE/task_ex.md
+
+# Windows PowerShell
+$REPO_ROOT = git rev-parse --show-toplevel
+# read: $REPO_ROOT\.github\ISSUE_TEMPLATE\task_ex.md
+``` The template has two parts:
 
 - **Frontmatter** (the `---` block): carries the `title` prefix (`[TASK-FE] `),
   the `folder` field, and the default `labels`. Keep this block at the top of
@@ -66,7 +76,10 @@ published issue to mirror the template as-is.
 
 ### 2. Ground yourself in the target stack
 
-Read `<folder>/CLAUDE.md` for the sub-app you're filing against. This matters a
+Read the CLAUDE.md for the sub-app you're filing against. Resolve the path based on CWD:
+- If CWD is already the target sub-app directory → read `./CLAUDE.md`
+- If CWD is the monorepo root → read `{folder}/CLAUDE.md`
+- Use `git rev-parse --show-toplevel` to confirm the repo root when in doubt. This matters a
 lot: the four apps are **not** the same stack.
 
 | Folder | Stack |

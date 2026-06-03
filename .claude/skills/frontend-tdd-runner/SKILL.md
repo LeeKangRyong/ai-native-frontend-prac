@@ -28,6 +28,19 @@ Owns the full test gate for a specified sub-app. Runs tsc → unit tests → E2E
 
 ---
 
+## Environment Detection
+
+Detect the shell environment once at invocation start and use it throughout all steps:
+
+| Test | WSL / bash | Windows PowerShell / CMD |
+|---|---|---|
+| Detect shell | `uname -s` → `Linux` | `uname` not found, or `$IsWindows` is `$true` |
+| Current dir name | `basename "$(pwd)"` | `Split-Path -Leaf (Get-Location)` |
+| Kill port (WSL) | `fuser -k ${port}/tcp 2>/dev/null \|\| true` | — |
+| Kill port (Win) | — | `netstat -ano \| findstr :${port}` → `taskkill /PID {pid} /F` |
+
+---
+
 ## Mode Detection
 
 Determine the mode from the invocation context **before running any steps**.
@@ -83,6 +96,24 @@ Playwright: ✅ detected (@playwright/test in devDependencies)
 ---
 
 ## Step 0 — Sub-App & Environment Detection
+
+Accept the sub-app path as an argument on invocation, or auto-detect using the steps below.
+
+**CWD-first detection (runs before changed-file scanning):**
+
+Get the current directory name using the detected shell environment and match against known sub-app names:
+
+| CWD name | Type | Node | sub-app path to use |
+|---|---|---|---|
+| `prac-fe-app-driver` | mobile | 20 | `./` |
+| `prac-fe-app-user` | mobile | 20 | `./` |
+| `prac-fe-web-manager` | web | 22 | `./` |
+| `prac-fe-web-intro` | web | 22 | `./` |
+| anything else | — | — | Fall through to changed-file scanning |
+
+**Changed-file scanning (monorepo root fallback):**
+
+Only runs when CWD-first detection did not match.
 
 Accept the sub-app path as an argument on invocation, or auto-detect based on changed files.
 
@@ -226,7 +257,7 @@ Get-Process | Where-Object { $_.Name -match "playwright|chromium" } |
   Stop-Process -Force -ErrorAction SilentlyContinue
 ```
 
-This project uses WSL2 (per `DEVELOPMENT.md`), so WSL2 commands are the default.
+Detect the shell environment and run the appropriate block. Both environments must work without error.
 
 ---
 

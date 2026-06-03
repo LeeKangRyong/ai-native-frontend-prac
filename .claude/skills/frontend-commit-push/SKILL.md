@@ -20,6 +20,18 @@ description: >-
 
 Accepts finished changes, runs the CI-equivalent local pre-flight inside the target sub-app, then commits with a convention-compliant message and pushes to the feature branch. This is the follow-up step to `frontend-issue-publisher`.
 
+## Environment Detection
+
+Detect the shell environment once at invocation start and use it throughout all steps:
+
+| Test | WSL / bash | Windows PowerShell / CMD |
+|---|---|---|
+| Detect shell | `uname -s` → `Linux` | `uname` not found, or `$IsWindows` is `$true` |
+| Current dir name | `basename "$(pwd)"` | `Split-Path -Leaf (Get-Location)` |
+| Full path | `pwd` | `(Get-Location).Path` |
+
+---
+
 ## Pre-condition — Re-read conventions every run
 
 Read `DEVELOPMENT.md` on each invocation to confirm that the type/scope whitelist and message format have not changed. The content below reflects the current baseline; the file takes precedence.
@@ -66,6 +78,22 @@ Map each file's top-level directory segment to a scope:
 | `prac-fe-web-manager/` | `manager` |
 | `prac-fe-web-intro/` | `intro` |
 
+**CWD-first detection (runs before prefix matching):**
+
+Get the current directory name using the detected shell environment and match against known sub-app names:
+
+| CWD name | Scope | Action |
+|---|---|---|
+| `prac-fe-app-driver` | `driver` | Scope confirmed — skip prefix matching |
+| `prac-fe-app-user` | `user` | Scope confirmed — skip prefix matching |
+| `prac-fe-web-manager` | `manager` | Scope confirmed — skip prefix matching |
+| `prac-fe-web-intro` | `intro` | Scope confirmed — skip prefix matching |
+| anything else | — | Fall through to prefix matching below |
+
+**Prefix matching (monorepo root fallback):**
+
+Only runs when CWD-first detection did not match (i.e., Claude is running from the monorepo root).
+
 **Detection rules:**
 
 - **Single sub-app** → scope confirmed, continue.
@@ -88,6 +116,8 @@ Check the current branch with `git branch --show-current`.
 ## Step 4 — Local Pre-Flight Gate
 
 Run the following inside the detected sub-app directory. Stop immediately if any step fails.
+
+**Working directory**: If CWD was already the target sub-app (confirmed via CWD-first detection in Step 2), run commands directly without `cd`. Otherwise `cd {sub-app-dir}` first.
 
 | Sub-app | Node | Pre-flight commands |
 |---|---|---|

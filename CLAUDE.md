@@ -17,4 +17,4 @@ For specific instructions, refer to the following files:
 - **Sub-project Commands:** See `CLAUDE.md` inside each sub-directory (if available) or check `./DEVELOPMENT.md`.
 
 ## 3. Restrictions
-- **No Pull Requests:** DO NOT create or push PRs under any circumstances.dh
+- **No Pull Requests:** DO NOT create or push PRs under any circumstances.
