@@ -1,17 +1,17 @@
 ﻿---
 name: frontend-issue-publisher
 description: >-
-  Create and publish a GitHub issue from this repo's Frontend Task template
-  (.github/ISSUE_TEMPLATE/task_ex.md), then open it on GitHub with `gh`. Use
-  this whenever the user wants to turn a description of frontend work into a
-  GitHub issue — especially Korean phrasings like "이슈 만들어줘", "~~ issue를
-  만들어줘", "태스크 이슈 작성해줘", "이슈로 등록해줘", or when they give a
-  folder/label/description block (e.g. "folder: prac-fe-app-user / label:
-  feature / ...설명") describing a task for one of the four sub-apps
+  Create and publish a GitHub issue using this repo's Frontend Task template
+  (.github/ISSUE_TEMPLATE/task_ex.md), then open it on GitHub with gh cli.
+  Use this whenever the user wants to turn a frontend task description into a
+  GitHub issue. Korean triggers: "이슈 만들어줘", "~~ issue를 만들어줘",
+  "태스크 이슈 작성해줘", "이슈로 등록해줘". Also triggers when the user
+  provides a folder/label/description block (e.g. "folder: prac-fe-app-user
+  / label: feature / ...설명") for one of the four sub-apps
   (prac-fe-app-driver, prac-fe-app-user, prac-fe-web-manager,
-  prac-fe-web-intro). Trigger even if they don't say the word "template" — any
-  request to file, open, write, or publish an issue for this repo should use
-  this skill so the issue matches the team's format and conventions.
+  prac-fe-web-intro). Trigger even without the word "template" — any request
+  to file, open, write, or publish an issue should use this skill so the
+  issue matches the team's format and conventions.
 ---
 
 # Frontend Issue Publisher

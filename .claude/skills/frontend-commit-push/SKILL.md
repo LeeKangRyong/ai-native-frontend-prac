@@ -1,18 +1,18 @@
 ﻿---
 name: frontend-commit-push
 description: >-
-  Always use this skill whenever the user wants to commit and/or push finished
-  work for any of this monorepo's four sub-apps (prac-fe-app-driver,
+  Use this skill whenever the user wants to commit and/or push finished work
+  for any of this monorepo's four sub-apps (prac-fe-app-driver,
   prac-fe-app-user, prac-fe-web-manager, prac-fe-web-intro). Follows the
-  team's AngularJS-style commit convention ([type]([scope]): 한글 제목 #이슈번호),
-  auto-detects scope (driver/user/manager/intro) from changed paths, runs
-  CI-equivalent pre-flight (npm run lint → frontend-tdd-runner) before
-  committing, and pushes directly to main — never creates a PR. Trigger on Korean phrasings like "커밋하고 푸시해줘", "커밋해줘", "푸시해줘",
-  "변경사항 커밋해줘", "작업 끝났으니 올려줘", "컨벤션대로 커밋해줘", "작업 완료",
-  "이슈 N번 작업 커밋해줘", "feat(user)로 커밋해줘 #12", "올려줘", "코드 올려줘",
-  or any English phrasing like "commit my changes" / "commit and push" /
-  "push this". Natural follow-up after frontend-issue-publisher. Refuse PR
-  creation — this project forbids PRs entirely.
+  team's AngularJS-style commit convention (type(scope): 한글 제목 #이슈번호),
+  auto-detects scope from changed paths, runs lint then frontend-tdd-runner
+  as pre-flight, and pushes directly to main — never creates a PR.
+  Korean triggers: "커밋하고 푸시해줘", "커밋해줘", "푸시해줘", "변경사항
+  커밋해줘", "작업 끝났으니 올려줘", "컨벤션대로 커밋해줘", "작업 완료",
+  "이슈 N번 작업 커밋해줘", "feat(user)로 커밋해줘 #12", "올려줘",
+  "코드 올려줘". English: "commit my changes", "commit and push", "push
+  this". Natural follow-up after frontend-issue-publisher. PRs are
+  forbidden — refuse any PR creation requests.
 ---
 
 # Frontend Commit & Push

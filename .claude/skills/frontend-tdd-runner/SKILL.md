@@ -1,21 +1,18 @@
 ﻿---
 name: frontend-tdd-runner
 description: >-
-  TDD validation skill for this monorepo's four sub-apps
-  (prac-fe-app-driver, prac-fe-app-user, prac-fe-web-manager,
-  prac-fe-web-intro). Runs type check (tsc, mobile only) → unit tests
-  (npm test) → E2E tests (Playwright, web only) in sequence.
-  Two modes: (1) Validate-only — runs tests and reports pass/fail, no agent
-  spawning, minimal token cost; used as the pre-flight gate inside
-  frontend-commit-push and for any "테스트 돌려줘" / "TDD 검증해줘" / "commit
-  전에 테스트" request. (2) Auto-fix — spawns a single fix-agent per
-  iteration (analysis + fix combined) to resolve failures automatically —
-  unit loop max 3 attempts, E2E loop max 2; triggered only by explicit fix
-  intent like "테스트 고쳐줘", "테스트 통과시켜줘", "테스트 에러 고쳐줘",
-  "unit test 실패 고쳐줘", "테스트 자동 수정". Always use this skill for any
-  mention of running, fixing, or checking tests for driver/user/manager/intro,
-  including English phrasings like "run tests", "fix tests", "check tests".
-  Also called automatically as the pre-flight gate inside frontend-commit-push.
+  TDD validation skill for this monorepo's four sub-apps (prac-fe-app-driver,
+  prac-fe-app-user, prac-fe-web-manager, prac-fe-web-intro). Runs type check
+  (tsc, mobile only) → unit tests (npm test) → E2E (Playwright, web only)
+  in sequence. Two modes: (1) Validate-only — runs tests and reports
+  pass/fail, no agent spawning; used as the pre-flight gate inside
+  frontend-commit-push and for "테스트 돌려줘", "TDD 검증해줘", "commit 전에
+  테스트", "run tests", "check tests". (2) Auto-fix — spawns a fix-agent
+  per iteration to resolve failures automatically (unit max 3, E2E max 2);
+  triggered by "테스트 고쳐줘", "테스트 통과시켜줘", "테스트 에러 고쳐줘",
+  "unit test 실패 고쳐줘", "테스트 자동 수정", "fix tests". Always use this
+  skill for any mention of running, fixing, or checking tests for any of the
+  four sub-apps. Also called automatically inside frontend-commit-push.
 ---
 
 # Frontend TDD Runner
