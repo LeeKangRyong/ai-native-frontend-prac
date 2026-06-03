@@ -31,6 +31,18 @@ Detect the shell environment once at invocation start and use it throughout all 
 
 ---
 
+## Environment Detection
+
+Detect the shell environment once at invocation start and use it throughout all steps:
+
+| Test | WSL / bash | Windows PowerShell / CMD |
+|---|---|---|
+| Detect shell | `uname -s` → `Linux` | `uname` not found, or `$IsWindows` is `$true` |
+| Current dir name | `basename "$(pwd)"` | `Split-Path -Leaf (Get-Location)` |
+| Full path | `pwd` | `(Get-Location).Path` |
+
+---
+
 ## Pre-condition — Re-read conventions every run
 
 Read `DEVELOPMENT.md` on each invocation to confirm that the type/scope whitelist and message format have not changed. The content below reflects the current baseline; the file takes precedence.
