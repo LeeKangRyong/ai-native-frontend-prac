@@ -29,5 +29,5 @@ prac-fe-web-intro/figma.config.json
 # env
 prac-fe-app-driver/.env
 prac-fe-app-user/.env
-prac-fe-web-management/.env
+prac-fe-web-manager/.env
 prac-fe-web-intro/.env

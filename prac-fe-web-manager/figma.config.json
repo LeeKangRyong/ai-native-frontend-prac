@@ -1,6 +1,0 @@
-{
-  "codeConnect": {
-    "include": ["src/**/*.figma.tsx"],
-    "figmaFile": "https://www.figma.com/design/OyVl4OeOau122rlTfo1Tg3/DRT?node-id=8-3"
-  }
-}
