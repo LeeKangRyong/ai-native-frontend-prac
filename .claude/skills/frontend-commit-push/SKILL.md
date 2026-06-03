@@ -37,7 +37,6 @@ Detect the shell environment once at invocation start and use it throughout all 
 Read `DEVELOPMENT.md` on each invocation to confirm that the type/scope whitelist and message format have not changed. The content below reflects the current baseline; the file takes precedence.
 
 - **Commit format**: `[type]([scope]): [Korean title ≤50 chars] #[issue number]`
-- **Branch format**: `[type]([scope])/#[issue number]-[description]`
 - **Allowed types**: `feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert`
 - **Allowed scopes**: `driver, user, manager, intro`
 
@@ -103,17 +102,7 @@ Only runs when CWD-first detection did not match (i.e., Claude is running from t
 
 ---
 
-## Step 3 — Branch Gate
-
-Check the current branch with `git branch --show-current`.
-
-- **On `main`**: create a convention feature branch and work from there. Branch name: `[type]([scope])/#[issue]-[desc]` (desc in English kebab-case). If type or issue number is not yet confirmed, it is fine to create the branch after Step 5.
-- **Already on a feature branch**: use it as-is.
-- **Never commit or push directly to `main`.**
-
----
-
-## Step 4 — Local Pre-Flight Gate
+## Step 3 — Local Pre-Flight Gate
 
 Run the following inside the detected sub-app directory. Stop immediately if any step fails.
 
@@ -152,15 +141,15 @@ Build the message as: `[type]([scope]): [Korean title] #[issue number]`
 
 ## Step 6 — Preview → Confirm → Commit → Push
 
-Show the user the final branch name, commit message, and push command, and wait for explicit approval.
+Show the user the commit message and push command, and wait for explicit approval.
 
 After approval:
 
 1. `git add` — restrict scope to the target sub-app directory.
 2. `git commit -m "..."` — commit with the confirmed message.
-3. `git push -u origin <branch>` — push to the feature branch only.
+3. `git push origin main` — push directly to main.
 
-On success, report the branch name and commit hash to the user.
+On success, report the commit hash to the user.
 
 **Never create a PR.** If the user requests a PR creation or merge, refuse and explain why (project rule: PRs are forbidden).
 
