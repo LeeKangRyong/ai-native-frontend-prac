@@ -1,4 +1,4 @@
-# Manager Web Guide (prac-fe-web-management)
+﻿# Manager Web Guide (prac-fe-web-manager)
 
 ## Build & Dev Commands
 - **Install Dependencies:** `npm install`
@@ -10,4 +10,4 @@
 ## Tech Stack & Rules
 - Language: TypeScript
 - Framework: React (+Vite)
-- Rule: Do not import any files from outside this `prac-fe-web-management` directory.
+- Rule: Do not import any files from outside this `prac-fe-web-manager` directory.

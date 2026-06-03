@@ -1,16 +1,16 @@
-name: CI - Management Web
+﻿name: CI - Management Web
 
 on:
   push:
     paths:
-      - 'prac-fe-web-management/**'
+      - 'prac-fe-web-manager/**'
 
 jobs:
   lint-and-build:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: prac-fe-web-management
+        working-directory: prac-fe-web-manager
 
     steps:
       - uses: actions/checkout@v4
@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: '22'
           cache: 'npm'
-          cache-dependency-path: prac-fe-web-management/package-lock.json
+          cache-dependency-path: prac-fe-web-manager/package-lock.json
 
       - name: Install dependencies
         run: npm ci

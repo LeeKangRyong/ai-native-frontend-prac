@@ -1,10 +1,10 @@
-# Project Core Guide
+﻿# Project Core Guide
 
 ## 1. Structure & Isolation
 This is a mono-repository containing 4 completely independent frontend applications.
 - **`prac-fe-app-driver`**: Driver Mobile Application
 - **`prac-fe-app-user`**: User Mobile Application
-- **`prac-fe-web-management`**: Admin Management Web
+- **`prac-fe-web-manager`**: Admin Management Web
 - **`prac-fe-web-intro`**: Service Web for introducing
 
 ### CRITICAL RULE: Absolute Isolation

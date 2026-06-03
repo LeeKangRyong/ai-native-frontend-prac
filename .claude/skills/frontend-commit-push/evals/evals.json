@@ -1,4 +1,4 @@
-{
+﻿{
   "skill_name": "frontend-commit-push",
   "evals": [
     {
@@ -30,11 +30,11 @@
     },
     {
       "id": 2,
-      "prompt": "지금 변경사항 커밋해줘. prac-fe-app-user랑 prac-fe-web-management 둘 다 수정했어.",
-      "expected_output": "Multi-scope violation detected (user + management). Skill asks which sub-app to commit now and instructs user to split the other into a separate commit. Does not proceed without user decision.",
+      "prompt": "지금 변경사항 커밋해줘. prac-fe-app-user랑 prac-fe-web-manager 둘 다 수정했어.",
+      "expected_output": "Multi-scope violation detected (user + manager). Skill asks which sub-app to commit now and instructs user to split the other into a separate commit. Does not proceed without user decision.",
       "assertions": [
         {
-          "text": "multi-scope (user + management) is detected as an isolation violation",
+          "text": "multi-scope (user + manager) is detected as an isolation violation",
           "passed": null,
           "evidence": null
         },
@@ -52,7 +52,7 @@
     },
     {
       "id": 3,
-      "prompt": "management 변경 커밋해줘 #7. frontend-tdd-runner가 E2E 2번 시도해도 계속 실패해.",
+      "prompt": "manager 변경 커밋해줘 #7. frontend-tdd-runner가 E2E 2번 시도해도 계속 실패해.",
       "expected_output": "Pre-flight runs, frontend-tdd-runner returns failure (E2E loop exceeded). Skill reports tdd-runner's fix history and last error log to user and blocks the commit. No --no-verify bypass.",
       "assertions": [
         {

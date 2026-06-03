@@ -1,4 +1,4 @@
----
+﻿---
 name: frontend-issue-publisher
 description: >-
   Create and publish a GitHub issue from this repo's Frontend Task template
@@ -8,7 +8,7 @@ description: >-
   만들어줘", "태스크 이슈 작성해줘", "이슈로 등록해줘", or when they give a
   folder/label/description block (e.g. "folder: prac-fe-app-user / label:
   feature / ...설명") describing a task for one of the four sub-apps
-  (prac-fe-app-driver, prac-fe-app-user, prac-fe-web-management,
+  (prac-fe-app-driver, prac-fe-app-user, prac-fe-web-manager,
   prac-fe-web-intro). Trigger even if they don't say the word "template" — any
   request to file, open, write, or publish an issue for this repo should use
   this skill so the issue matches the team's format and conventions.
@@ -36,7 +36,7 @@ label: feature
 Pull these out (some may be missing — see below):
 
 - **folder** — which sub-app the work belongs to. One of `prac-fe-app-driver`,
-  `prac-fe-app-user`, `prac-fe-web-management`, `prac-fe-web-intro`.
+  `prac-fe-app-user`, `prac-fe-web-manager`, `prac-fe-web-intro`.
 - **label** — issue label(s) like `feature`, `bug`, `task`, `refactor`.
 - **story** — a reference to a parent story (`#42`, a URL, "스토리 12"). Only
   link a story when the user actually provides one; never invent a number.
@@ -73,7 +73,7 @@ lot: the four apps are **not** the same stack.
 |---|---|
 | prac-fe-app-driver | React Native (Expo) / TypeScript |
 | prac-fe-app-user | React Native (Expo) / TypeScript |
-| prac-fe-web-management | React + Vite / TypeScript |
+| prac-fe-web-manager | React + Vite / TypeScript |
 | prac-fe-web-intro | Next.js / TypeScript |
 
 This is why grounding matters: a request might name a library that doesn't fit
@@ -179,7 +179,7 @@ do the browser auth for them. On success, report the issue URL back to the user.
 
 **Input:**
 ```
-folder: prac-fe-web-management
+folder: prac-fe-web-manager
 label: feature
 
 대시보드에서 React Query로 주문 목록을 서버 상태로 캐싱하고 무한 스크롤 붙이는 이슈 만들어줘
@@ -187,7 +187,7 @@ label: feature
 
 **Resulting title:** `[TASK-FE] 대시보드 주문 목록 React Query 캐싱 및 무한 스크롤`
 
-**Folder:** `prac-fe-web-management` (in the frontmatter `folder` field).
+**Folder:** `prac-fe-web-manager` (in the frontmatter `folder` field).
 **Labels:** `task`, `feature` (the folder is *not* a label).
 
 **Body (abridged):** 태스크 설명 describes caching the order list as server state

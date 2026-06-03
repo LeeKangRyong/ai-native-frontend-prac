@@ -1,4 +1,4 @@
-# Conventions (prac-fe-web-management)
+﻿# Conventions (prac-fe-web-manager)
 
 ## Architecture
 

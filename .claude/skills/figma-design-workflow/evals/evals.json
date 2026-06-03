@@ -1,4 +1,4 @@
-{
+﻿{
   "skill_name": "figma-design-workflow",
   "evals": [
     {
@@ -136,11 +136,11 @@
     },
     {
       "id": 5,
-      "prompt": "prac-fe-web-management 관리자 웹 디자인 시작해줘",
-      "expected_output": "Skill recognizes prac-fe-web-management is out of scope (web app, not mobile). Refuses to proceed and explains this skill is only for prac-fe-app-driver and prac-fe-app-user.",
+      "prompt": "prac-fe-web-manager 관리자 웹 디자인 시작해줘",
+      "expected_output": "Skill recognizes prac-fe-web-manager is out of scope (web app, not mobile). Refuses to proceed and explains this skill is only for prac-fe-app-driver and prac-fe-app-user.",
       "assertions": [
         {
-          "text": "Skill refuses to proceed for prac-fe-web-management",
+          "text": "Skill refuses to proceed for prac-fe-web-manager",
           "passed": null,
           "evidence": null
         },
@@ -150,7 +150,7 @@
           "evidence": null
         },
         {
-          "text": "No Design Proposal is generated for web-management",
+          "text": "No Design Proposal is generated for web-manager",
           "passed": null,
           "evidence": null
         },

@@ -1,4 +1,4 @@
----
+﻿---
 name: figma-design-workflow
 description: >-
   Orchestrates the full design phase for React Native (Expo) mobile apps
@@ -37,7 +37,7 @@ Determine whether the task is for `prac-fe-app-driver` or `prac-fe-app-user`.
 
 - Look at recently modified files or explicit mention in the user's request
 - If genuinely ambiguous, ask: "driver 앱과 user 앱 중 어느 앱의 디자인을 시작할까요?"
-- This skill is for mobile apps only — never access `prac-fe-web-management` or `prac-fe-web-intro`
+- This skill is for mobile apps only — never access `prac-fe-web-manager` or `prac-fe-web-intro`
 
 ## Step 1 — Read Design Spec Files
 
@@ -139,4 +139,4 @@ Run Steps 0–2 only. Output `[DRY-RUN]` at the top. Do not call Figma.
 
 ## Isolation Rule
 
-Only access files inside the target app directory (`prac-fe-app-driver/` or `prac-fe-app-user/`). Never read from `prac-fe-web-management/` or `prac-fe-web-intro/`.
+Only access files inside the target app directory (`prac-fe-app-driver/` or `prac-fe-app-user/`). Never read from `prac-fe-web-manager/` or `prac-fe-web-intro/`.

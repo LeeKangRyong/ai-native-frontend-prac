@@ -1,4 +1,4 @@
-#!/bin/bash
+﻿#!/bin/bash
 SESSION_NAME="ai-native-fe-prac"
 BASE_DIR="$(cd "$(dirname "$0")" && pwd)"
 
@@ -22,7 +22,7 @@ tmux send-keys -t $P_DRIVER "cd $BASE_DIR/prac-fe-app-driver && $CMD" C-m
 
 # User 패널을 상하 분할 → 좌측 하단: Admin Web
 P_MGMT=$(tmux split-window -v -t $P_USER -P -F '#{pane_id}')
-tmux send-keys -t $P_MGMT "cd $BASE_DIR/prac-fe-web-management && $CMD" C-m
+tmux send-keys -t $P_MGMT "cd $BASE_DIR/prac-fe-web-manager && $CMD" C-m
 
 # Driver 패널을 상하 분할 → 우측 하단: Intro Web
 P_INTRO=$(tmux split-window -v -t $P_DRIVER -P -F '#{pane_id}')

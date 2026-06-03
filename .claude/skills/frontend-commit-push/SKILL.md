@@ -1,9 +1,9 @@
----
+﻿---
 name: frontend-commit-push
 description: >-
   Always use this skill whenever the user wants to commit and/or push finished
   work for any of this monorepo's four sub-apps (prac-fe-app-driver,
-  prac-fe-app-user, prac-fe-web-management, prac-fe-web-intro). Follows the
+  prac-fe-app-user, prac-fe-web-manager, prac-fe-web-intro). Follows the
   team's AngularJS-style commit convention ([type]([scope]): 한글 제목 #이슈번호),
   auto-detects scope (driver/user/manager/intro) from changed paths, runs
   CI-equivalent pre-flight (npm run lint → frontend-tdd-runner) before
@@ -63,7 +63,7 @@ Map each file's top-level directory segment to a scope:
 |---|---|
 | `prac-fe-app-driver/` | `driver` |
 | `prac-fe-app-user/` | `user` |
-| `prac-fe-web-management/` | `manager` |
+| `prac-fe-web-manager/` | `manager` |
 | `prac-fe-web-intro/` | `intro` |
 
 **Detection rules:**
@@ -93,7 +93,7 @@ Run the following inside the detected sub-app directory. Stop immediately if any
 |---|---|---|
 | `prac-fe-app-driver` (driver) | 20 | `npm ci` → `npm run lint` → `frontend-tdd-runner` |
 | `prac-fe-app-user` (user) | 20 | `npm ci` → `npm run lint` → `frontend-tdd-runner` |
-| `prac-fe-web-management` (manager) | 22 | `npm ci` → `npm run lint` → `frontend-tdd-runner` |
+| `prac-fe-web-manager` (manager) | 22 | `npm ci` → `npm run lint` → `frontend-tdd-runner` |
 | `prac-fe-web-intro` (intro) | 22 | `npm ci` → `npm run lint` → `frontend-tdd-runner` |
 
 `frontend-tdd-runner` handles tsc (mobile only) → unit tests → E2E (web, if Playwright is installed) in sequence, with an auto-fix loop (unit max 3 attempts, E2E max 2 attempts), and cleans up zombie server ports on completion.

@@ -1,10 +1,10 @@
-{
+﻿{
   "skill_name": "frontend-issue-publisher",
   "evals": [
     {
       "id": 1,
-      "prompt": "folder: prac-fe-web-management\nlabel: feature\n\n대시보드에서 React Query로 주문 목록을 서버 상태로 캐싱하고 무한 스크롤 붙이는 이슈 만들어줘. dry-run으로 확인만 해줘.",
-      "expected_output": "템플릿 섹션 전체(태스크 설명, 관련 스토리, 구현 사항, 테스트 요구사항, 완료 조건, 기술적 고려사항, 관련 자료)가 한국어로 채워짐. 제목은 '[TASK-FE] 대시보드 주문 목록 React Query 캐싱 및 무한 스크롤' 형식. folder=prac-fe-web-management, labels=task,feature. gh issue create 미실행.",
+      "prompt": "folder: prac-fe-web-manager\nlabel: feature\n\n대시보드에서 React Query로 주문 목록을 서버 상태로 캐싱하고 무한 스크롤 붙이는 이슈 만들어줘. dry-run으로 확인만 해줘.",
+      "expected_output": "템플릿 섹션 전체(태스크 설명, 관련 스토리, 구현 사항, 테스트 요구사항, 완료 조건, 기술적 고려사항, 관련 자료)가 한국어로 채워짐. 제목은 '[TASK-FE] 대시보드 주문 목록 React Query 캐싱 및 무한 스크롤' 형식. folder=prac-fe-web-manager, labels=task,feature. gh issue create 미실행.",
       "files": [],
       "assertions": [
         {
@@ -13,12 +13,12 @@
           "evidence": null
         },
         {
-          "text": "folder가 prac-fe-web-management로 설정되었는가 (label이 아닌 frontmatter folder 필드)",
+          "text": "folder가 prac-fe-web-manager로 설정되었는가 (label이 아닌 frontmatter folder 필드)",
           "passed": null,
           "evidence": null
         },
         {
-          "text": "labels에 task와 feature가 포함되고 folder명(prac-fe-web-management)은 label로 들어가지 않았는가",
+          "text": "labels에 task와 feature가 포함되고 folder명(prac-fe-web-manager)은 label로 들어가지 않았는가",
           "passed": null,
           "evidence": null
         },

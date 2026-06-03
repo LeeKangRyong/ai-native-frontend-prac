@@ -1,9 +1,9 @@
-{
+﻿{
   "skill_name": "frontend-tdd-runner",
   "evals": [
     {
       "id": 1,
-      "prompt": "Run TDD validation for the prac-fe-web-management sub-app. Assume all 23 unit tests and 5 E2E tests pass on the first run.",
+      "prompt": "Run TDD validation for the prac-fe-web-manager sub-app. Assume all 23 unit tests and 5 E2E tests pass on the first run.",
       "expected_output": "Success report output ([frontend-tdd-runner] ✅) with no fix loop triggered. Cleanup step also runs.",
       "assertions": [
         {
@@ -74,7 +74,7 @@
     },
     {
       "id": 4,
-      "prompt": "Run TDD runner for prac-fe-web-management. E2E keeps failing — page.goto('/login') can't find the selector. It's been failing after 2 fix attempts.",
+      "prompt": "Run TDD runner for prac-fe-web-manager. E2E keeps failing — page.goto('/login') can't find the selector. It's been failing after 2 fix attempts.",
       "expected_output": "E2E fix loop runs up to 2 attempts → still failing → failure report. Report includes fix history. Cleanup runs. Debugger checks test code/mocking/config before feature code.",
       "assertions": [
         {
@@ -172,7 +172,7 @@
     },
     {
       "id": 8,
-      "prompt": "Show me what would run for prac-fe-web-management tdd-runner without executing it. Playwright is installed.",
+      "prompt": "Show me what would run for prac-fe-web-manager tdd-runner without executing it. Playwright is installed.",
       "expected_output": "[DRY-RUN] output. tsc SKIPPED (web), npm test + Playwright planned, loop counts (3/2) shown, Playwright detected.",
       "assertions": [
         {

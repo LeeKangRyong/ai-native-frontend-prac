@@ -1,8 +1,8 @@
----
+﻿---
 name: frontend-tdd-runner
 description: >-
   TDD validation skill for this monorepo's four sub-apps
-  (prac-fe-app-driver, prac-fe-app-user, prac-fe-web-management,
+  (prac-fe-app-driver, prac-fe-app-user, prac-fe-web-manager,
   prac-fe-web-intro). Runs type check (tsc, mobile only) → unit tests
   (npm test) → E2E tests (Playwright, web only) in sequence.
   Two modes: (1) Validate-only — runs tests and reports pass/fail, no agent
@@ -13,7 +13,7 @@ description: >-
   unit loop max 3 attempts, E2E loop max 2; triggered only by explicit fix
   intent like "테스트 고쳐줘", "테스트 통과시켜줘", "테스트 에러 고쳐줘",
   "unit test 실패 고쳐줘", "테스트 자동 수정". Always use this skill for any
-  mention of running, fixing, or checking tests for driver/user/management/intro,
+  mention of running, fixing, or checking tests for driver/user/manager/intro,
   including English phrasings like "run tests", "fix tests", "check tests".
   Also called automatically as the pre-flight gate inside frontend-commit-push.
 ---
@@ -64,10 +64,10 @@ Planned execution order:
 ─────────────────────────────────────────
 ```
 
-**Web app output example (prac-fe-web-management):**
+**Web app output example (prac-fe-web-manager):**
 ```
 [DRY-RUN] Not actually executing
-Sub-app: prac-fe-web-management (web, Node 22)
+Sub-app: prac-fe-web-manager (web, Node 22)
 ─────────────────────────────────────────
 Planned execution order:
   1. tsc: SKIPPED (web app)
@@ -90,7 +90,7 @@ Accept the sub-app path as an argument on invocation, or auto-detect based on ch
 |---|---|---|---|---|
 | `prac-fe-app-driver` | mobile | 20 | ✅ run | ❌ skip |
 | `prac-fe-app-user` | mobile | 20 | ✅ run | ❌ skip |
-| `prac-fe-web-management` | web | 22 | ❌ skip | ✅ (if installed) |
+| `prac-fe-web-manager` | web | 22 | ❌ skip | ✅ (if installed) |
 | `prac-fe-web-intro` | web | 22 | ❌ skip | ✅ (if installed) |
 
 **Playwright installation detection**: Run the E2E step only if `@playwright/test` is present in `devDependencies` of `{sub-app}/package.json`. If absent, skip (not an error — just leave a note).
@@ -236,7 +236,7 @@ This project uses WSL2 (per `DEVELOPMENT.md`), so WSL2 commands are the default.
 
 ```
 [frontend-tdd-runner] ✅ All tests passed
-Sub-app: prac-fe-web-management
+Sub-app: prac-fe-web-manager
 ─────────────────────────────────
 Type check : SKIPPED (web)
 Unit tests : PASS (23/23)  — 1 fix applied
@@ -250,7 +250,7 @@ Cleanup    : done (ports cleared)
 
 ```
 [frontend-tdd-runner] ❌ Tests failed — commit blocked
-Sub-app: prac-fe-web-management
+Sub-app: prac-fe-web-manager
 Failed stage: E2E (after 2 attempts)
 ─────────────────────────────────
 [Last error log summary — max 30 lines]
