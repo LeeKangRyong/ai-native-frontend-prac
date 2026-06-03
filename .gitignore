@@ -23,7 +23,7 @@ prac-fe-app-user/dist/
 # figma config (contains file key — keep out of public repos)
 prac-fe-app-driver/figma.config.json
 prac-fe-app-user/figma.config.json
-prac-fe-web-management/figma.config.json
+prac-fe-web-manager/figma.config.json
 prac-fe-web-intro/figma.config.json
 
 # env
