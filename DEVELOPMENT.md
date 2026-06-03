@@ -14,11 +14,11 @@ Before starting any task, create a dedicated branch:
 
 ### Commit Message Convention
 Follow AngularJS Convention. The body/subject must be in **Korean (한글) and under 50 characters**.
-- **Allowed Scopes:** `driver`, `user`, `management`, `intro`
+- **Allowed Scopes:** `driver`, `user`, `manager`, `intro`
 - **Format:** `[type]([scope]): [Subject in Korean] #[issue_number]`
 - **Examples:**
   - `feat(driver): 실시간 경로 추적 오류 해결 #3`
-  - `fix(management): 로그인 세션 만료 얼럿 추가 #12`
+  - `fix(manager): 로그인 세션 만료 얼럿 추가 #12`
 
 ## 3. Issue Generation
 When instructed to create an issue, use the template: `./.github/ISSUE_TEMPLATE/task_ex.md`.

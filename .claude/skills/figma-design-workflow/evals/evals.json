@@ -1,0 +1,197 @@
+{
+  "skill_name": "figma-design-workflow",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "prac-fe-app-driver 앱 디자인 확인만 해줘",
+      "expected_output": "[DRY-RUN] header at top, design proposal with '미정' for empty .ai/ fields, Frame Standard section showing 390x844 and Safe Area, no Figma MCP call made, approval gate message NOT shown (dry-run stops at proposal).",
+      "assertions": [
+        {
+          "text": "[DRY-RUN] header appears at the top of the response",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "prac-fe-app-driver is correctly identified as the target app",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "A Design Proposal section is present in the output",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "No Figma MCP call is made (no '[FIGMA CALL:]' marker in output)",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "The approval gate message ('구현 시작해줘') is NOT present — dry-run stops before it",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "Frame Standard section (or equivalent) shows 390×844 frame size in the proposal",
+          "passed": null,
+          "evidence": null
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "prac-fe-app-user 앱 디자인 시작해줘",
+      "expected_output": "Reads .ai/API.md, .ai/CONVENTIONS.md, .ai/DESIGN.md for user app. Outputs structured Design Proposal (Frame Standard 390x844, tokens, screen inventory, component hierarchy, API→UI mapping). Ends with approval request '이 구조로 Figma에 그려드릴까요?'. Does NOT call Figma yet.",
+      "assertions": [
+        {
+          "text": "prac-fe-app-user is identified as the target app",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "Design Proposal includes all four sections: Design Tokens, Screen Inventory, Component Hierarchy, API→UI Mapping",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "Response ends with an approval request asking the user to confirm the structure before Figma",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "No Figma MCP call is made (no '[FIGMA CALL:]' in output)",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "Response does NOT start with [DRY-RUN] — this is a full flow request",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "Frame Standard (390×844 or 390x844) is mentioned in the proposal",
+          "passed": null,
+          "evidence": null
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "디자인 시작해줘",
+      "expected_output": "Skill detects ambiguity (no app specified). Asks user whether to design for driver or user app before reading any files or generating a proposal.",
+      "assertions": [
+        {
+          "text": "Skill asks user to specify which app (driver or user) before proceeding",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "Skill does NOT silently pick a default app and proceed",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "Both prac-fe-app-driver and prac-fe-app-user are mentioned as options",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "No Design Proposal is generated without the user answering first",
+          "passed": null,
+          "evidence": null
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "driver 앱 figma 그려줘. 홈 화면에는 현재 배차 상태 카드, 수락 버튼, 수익 요약 위젯 넣어줘. 로그인 화면도 만들어줘.",
+      "expected_output": "Detects driver app. Reads .ai/ files. Synthesizes proposal incorporating the user's specific requirements (배차 상태 카드, 수락 버튼, 수익 요약 위젯 for HomeScreen; LoginScreen). Outputs proposal including Frame Standard 390x844, waits for approval — does NOT call Figma until confirmed.",
+      "assertions": [
+        {
+          "text": "prac-fe-app-driver is identified as the target app",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "HomeScreen in the proposal includes 배차 상태 카드, 수락 버튼, and 수익 요약 위젯",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "LoginScreen (로그인 화면) appears in the Screen Inventory",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "Response ends with approval request before Figma generation",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "No Figma MCP call is made in this response",
+          "passed": null,
+          "evidence": null
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "prac-fe-web-management 관리자 웹 디자인 시작해줘",
+      "expected_output": "Skill recognizes prac-fe-web-management is out of scope (web app, not mobile). Refuses to proceed and explains this skill is only for prac-fe-app-driver and prac-fe-app-user.",
+      "assertions": [
+        {
+          "text": "Skill refuses to proceed for prac-fe-web-management",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "Explanation mentions this skill is for mobile apps only (driver and user)",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "No Design Proposal is generated for web-management",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "prac-fe-app-driver and/or prac-fe-app-user are mentioned as the valid targets",
+          "passed": null,
+          "evidence": null
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "prac-fe-app-user 앱 로그인 화면 디자인해줘. figma에 그려줘.",
+      "expected_output": "Reads .ai/ files for user app. Proposal includes Frame Standard (390x844, Safe Area 59px top / 34px bottom). Ends with approval gate. When Figma generation is described, explicitly states 390x844 frame size and Safe Area overlay.",
+      "assertions": [
+        {
+          "text": "prac-fe-app-user is identified as the target app",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "LoginScreen (로그인 화면) appears in the Screen Inventory or proposal",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "390×844 (or 390x844) frame size is explicitly mentioned in the proposal or Frame Standard section",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "Safe Area (59px top or 34px bottom) is mentioned in the proposal or Frame Standard section",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "Response ends with approval gate before any Figma generation",
+          "passed": null,
+          "evidence": null
+        }
+      ]
+    }
+  ]
+}

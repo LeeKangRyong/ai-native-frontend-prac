@@ -5,7 +5,7 @@ description: >-
   work for any of this monorepo's four sub-apps (prac-fe-app-driver,
   prac-fe-app-user, prac-fe-web-management, prac-fe-web-intro). Follows the
   team's AngularJS-style commit convention ([type]([scope]): 한글 제목 #이슈번호),
-  auto-detects scope (driver/user/management/intro) from changed paths, runs
+  auto-detects scope (driver/user/manager/intro) from changed paths, runs
   CI-equivalent pre-flight (npm run lint → frontend-tdd-runner) before
   committing, and pushes to the feature branch — never to main, never creates
   a PR. Trigger on Korean phrasings like "커밋하고 푸시해줘", "커밋해줘", "푸시해줘",
@@ -27,7 +27,7 @@ Read `DEVELOPMENT.md` on each invocation to confirm that the type/scope whitelis
 - **Commit format**: `[type]([scope]): [Korean title ≤50 chars] #[issue number]`
 - **Branch format**: `[type]([scope])/#[issue number]-[description]`
 - **Allowed types**: `feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert`
-- **Allowed scopes**: `driver, user, management, intro`
+- **Allowed scopes**: `driver, user, manager, intro`
 
 ---
 
@@ -63,7 +63,7 @@ Map each file's top-level directory segment to a scope:
 |---|---|
 | `prac-fe-app-driver/` | `driver` |
 | `prac-fe-app-user/` | `user` |
-| `prac-fe-web-management/` | `management` |
+| `prac-fe-web-management/` | `manager` |
 | `prac-fe-web-intro/` | `intro` |
 
 **Detection rules:**
@@ -93,7 +93,7 @@ Run the following inside the detected sub-app directory. Stop immediately if any
 |---|---|---|
 | `prac-fe-app-driver` (driver) | 20 | `npm ci` → `npm run lint` → `frontend-tdd-runner` |
 | `prac-fe-app-user` (user) | 20 | `npm ci` → `npm run lint` → `frontend-tdd-runner` |
-| `prac-fe-web-management` (management) | 22 | `npm ci` → `npm run lint` → `frontend-tdd-runner` |
+| `prac-fe-web-management` (manager) | 22 | `npm ci` → `npm run lint` → `frontend-tdd-runner` |
 | `prac-fe-web-intro` (intro) | 22 | `npm ci` → `npm run lint` → `frontend-tdd-runner` |
 
 `frontend-tdd-runner` handles tsc (mobile only) → unit tests → E2E (web, if Playwright is installed) in sequence, with an auto-fix loop (unit max 3 attempts, E2E max 2 attempts), and cleans up zombie server ports on completion.
@@ -146,13 +146,13 @@ On success, report the branch name and commit hash to the user.
 
 Flow: only `prac-fe-app-user/**` changed → scope=`user` → currently on `main`, create branch `feat(user)/#12-login-screen` → lint passes → `frontend-tdd-runner` passes (tsc + unit tests) → message preview `feat(user): 로그인 화면 구현 #12` → approved → push.
 
-**Example 2 — Pre-flight failure (web, management)**
+**Example 2 — Pre-flight failure (web, manager)**
 
 ```
-management 변경 커밋해줘 #7
+manager 변경 커밋해줘 #7
 ```
 
-Flow: scope=`management` → web so tsc skipped → `npm run lint` fails → commit stopped, ESLint output summarized. Ends with "please fix lint errors and re-run".
+Flow: scope=`manager` → web so tsc skipped → `npm run lint` fails → commit stopped, ESLint output summarized. Ends with "please fix lint errors and re-run".
 
 **Example 3 — Missing issue number**
 
