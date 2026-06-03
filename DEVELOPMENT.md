@@ -27,6 +27,18 @@ When running from a sub-app CWD, skills detect the scope from the directory name
 
 ## 2. Git Workflow
 
+### Long-lived App Branches
+
+각 sub-app은 독립된 장기 브랜치를 가진다. PR 없이 해당 앱 브랜치에 직접 push한다.
+
+| Sub-app | Push 대상 브랜치 |
+|---|---|
+| `prac-fe-app-driver` | `driver-app` |
+| `prac-fe-app-user` | `user-app` |
+| `prac-fe-web-manager` | `manager-web` |
+| `prac-fe-web-intro` | `intro-web` |
+| 루트 파일 (`.claude/`, `CLAUDE.md`, `.github/` 등) | `main` |
+
 ### Branch Naming Convention
 Before starting any task, create a dedicated branch:
 - Format: `[type]([scope])/#[issue_number]-[description]`
