@@ -26,8 +26,24 @@ prac-fe-app-user/figma.config.json
 prac-fe-web-manager/figma.config.json
 prac-fe-web-intro/figma.config.json
 
+# Claude local settings (personal overrides, not for team)
+**/.claude/settings.local.json
+
 # env
 prac-fe-app-driver/.env
+prac-fe-app-driver/.env.local
+prac-fe-app-driver/.env.*.local
 prac-fe-app-user/.env
+prac-fe-app-user/.env.local
+prac-fe-app-user/.env.*.local
 prac-fe-web-manager/.env
+prac-fe-web-manager/.env.local
+prac-fe-web-manager/.env.*.local
 prac-fe-web-intro/.env
+prac-fe-web-intro/.env.local
+prac-fe-web-intro/.env.*.local
+
+# certificates / keys
+*.pem
+*.key
+*.p12
