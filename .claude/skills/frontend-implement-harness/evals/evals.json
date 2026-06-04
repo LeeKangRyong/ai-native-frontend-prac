@@ -1,0 +1,23 @@
+{
+  "skill_name": "frontend-implement-harness",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "구현 시작해줘. 이슈는 #42야.",
+      "expected_output": "Stage 0 guard passes → app_type detected as mobile → IMPLEMENT.md found → Stage 1 Planner Agent spawned with IMPLEMENT.md/DESIGN.md/CONVENTIONS.md → Plan Critic Agent spawned → user approval gate shown with Task Breakdown",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "구현 시작해줘",
+      "expected_output": "Stage 0 aborts immediately with error: '.ai/IMPLEMENT.md not found'. Clear abort message displayed. Stage 1 and beyond NOT executed. No code files modified.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "dry-run으로 확인만 해줘",
+      "expected_output": "Stage 0 only: app_type detected, file check results shown, full Stage 0-6 pipeline listed with planned agents for mobile app_type, no source files modified",
+      "files": []
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+[
+  {"query": "구현 시작해줘. 이슈는 #42야.", "should_trigger": true},
+  {"query": "harness 돌려줘", "should_trigger": true},
+  {"query": "implement the login screen now", "should_trigger": true},
+  {"query": "개발 시작해줘, 이슈 #15번이야", "should_trigger": true},
+  {"query": "start dev on this issue", "should_trigger": true},
+  {"query": "dry-run으로 확인만 해줘", "should_trigger": true},
+  {"query": "계획만 먼저 보여줘, 코드 건드리지 마", "should_trigger": true},
+  {"query": "확인만 해줘", "should_trigger": true},
+  {"query": "이 기능 구현 시작해줘", "should_trigger": true},
+  {"query": "harness로 구현 진행해줘", "should_trigger": true},
+  {"query": "git status 확인해줘", "should_trigger": false},
+  {"query": "IMPLEMENT.md 파일 어떻게 작성하면 돼?", "should_trigger": false},
+  {"query": "코드 리뷰만 따로 해줘", "should_trigger": false},
+  {"query": "이 버그 왜 나는지 분석해줘", "should_trigger": false},
+  {"query": "npm install 실행해줘", "should_trigger": false},
+  {"query": "figma 디자인 작업 시작해줘", "should_trigger": false},
+  {"query": "커밋하고 푸시해줘", "should_trigger": false},
+  {"query": "tsc 에러 메시지 뭐야?", "should_trigger": false},
+  {"query": "CONVENTIONS.md 내용 설명해줘", "should_trigger": false},
+  {"query": "이 PR 어떻게 생각해?", "should_trigger": false}
+]

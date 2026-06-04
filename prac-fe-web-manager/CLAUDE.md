@@ -29,5 +29,6 @@ This Claude instance runs with `prac-fe-web-manager/` as the working directory (
 | `frontend-tdd-runner` | "테스트 돌려줘" / "테스트 고쳐줘" |
 | `frontend-commit-push` | "커밋하고 푸시해줘" |
 | `figma-design-workflow` | "디자인 시작해줘" |
+| `frontend-implement-harness` | "구현 시작해줘" / "harness 돌려줘" |
 
 Git commit scope fixed to: `manager`
