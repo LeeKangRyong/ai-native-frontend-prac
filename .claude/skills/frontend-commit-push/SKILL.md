@@ -46,12 +46,19 @@ Read `DEVELOPMENT.md` on each invocation to confirm that the type/scope whitelis
 If the utterance contains `dry-run`, `확인만 해줘`, `실행 말고 보여줘`, or `미리 보기만`, operate in dry-run mode.
 
 - **Steps 1–5 run as normal** (scope detection, branch check, pre-flight, message validation all execute for real).
-- **Stop at Step 6**: do not execute `git commit` or `git push`. Instead, output the commands that would run and the final commit message.
-- Output format:
+- **Stop at Step 6**: do not execute `git commit` or `git push`. Instead, output the commands that would run and the final commit message(s).
+- Output format (single commit):
   ```
   [DRY-RUN] Not actually executing
   Commit message: feat(user): 로그인 화면 구현 #12
   Push command: git push origin user-app
+  ```
+- Output format (multiple commits):
+  ```
+  [DRY-RUN] Not actually executing
+  Commit 1/2: feat(manager): 대시보드 차트 컴포넌트 추가 #15
+  Commit 2/2: chore(manager): ESLint 설정 업데이트 #15
+  Push command: git push origin manager-web
   ```
 
 ---
@@ -133,30 +140,88 @@ Before assembling the commit message, verify git state and prepare the target br
 
 ---
 
-## Step 5 — Assemble & Validate Commit Message
+## Step 4.5 — Commit Granularity Analysis
 
-Build the message as: `[type]([scope]): [Korean title] #[issue number]`
+Analyze the changed file list from Step 1 and determine whether splitting into multiple commits improves readability and semantic clarity.
 
-**Validation rules:**
+**Path → AngularJS type mapping:**
+
+| Path pattern | Inferred type |
+|---|---|
+| `**/*.test.*`, `**/*.spec.*`, `**/__tests__/**` | `test` |
+| `**/README*`, `**/*.md`, `docs/**` | `docs` |
+| `**/*.config.*`, `package.json`, `.env*` | `chore` |
+| `**/styles/**`, `**/*.css`, `**/*.scss` | `style` |
+| All other source files | User-specified type or `feat` as default |
+
+**Group files by inferred type.** Within the same type group, keep files together.
+
+**Split when 2+ distinct type groups exist AND at least one of the following:**
+- Different AngularJS types are mixed (e.g., `feat` + `fix`, `feat` + `docs`, `feat` + `chore`)
+- Test files changed independently (not a 1:1 pair with a modified implementation file)
+- Config/doc changes coexist with feature or fix changes
+- 2+ independent feature directories with no import relationship between them
+
+**Do NOT split when:**
+- Only 1 file changed
+- Implementation file and its direct test file are the only changes (same logical unit)
+- User utterance contains `하나로 커밋`, `single`, or `합쳐서` (honor user intent)
+
+**Output of this step:**
+- **1 group** → proceed to Step 5 as normal (single commit flow)
+- **2+ groups** → proceed to Step 5 with multi-commit mode; each group becomes one commit
+
+---
+
+## Step 5 — Assemble & Validate Commit Message(s)
+
+Build each message as: `[type]([scope]): [Korean title] #[issue number]`
+
+**Validation rules (apply to every message):**
 
 - **type**: must be from the allowed list (`feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert`). Reject and request re-input if not.
 - **scope**: must match the scope confirmed in Step 2.
 - **Korean title**: ≤50 characters. If over, shorten and confirm with the user.
-- **Issue number**: `#<number>` required for sub-app scopes (`driver`, `user`, `manager`, `intro`). Try to extract from the utterance, branch name, or recent issues. If not found, **do not guess** — ask the user. **Optional for `root` scope** — omit if not provided.
+- **Issue number**: `#<number>` required for sub-app scopes (`driver`, `user`, `manager`, `intro`). Same issue number applies to all commits in a multi-commit flow. Try to extract from the utterance, branch name, or recent issues. If not found, **do not guess** — ask the user. **Optional for `root` scope** — omit if not provided.
 
 ---
 
-## Step 6 — Preview → Confirm → Checkout → Commit → Push → Return
+## Step 6 — Preview → Confirm → Checkout → Commit(s) → Push → Return
 
-Show the user the commit message and push command, and wait for explicit approval.
+Show the user the commit message(s) and push command, and wait for explicit approval.
+
+### Single-commit preview
+
+```
+Commit message: feat(user): 로그인 화면 구현 #12
+Push command: git push origin user-app
+```
+
+### Multi-commit preview
+
+```
+[MULTI-COMMIT PREVIEW — N개 커밋]
+
+1/N  feat(manager): 대시보드 차트 컴포넌트 추가 #15
+     Files: src/components/Chart.tsx, src/components/Chart.test.tsx
+
+2/N  chore(manager): ESLint 설정 업데이트 #15
+     Files: .eslintrc.json
+
+이 순서로 커밋하시겠습니까? (하나로 합칠 수도 있습니다)
+```
+
+If the user replies with `하나로` or `합쳐서`, merge all groups into a single commit using the first group's type and a combined title, then proceed as single-commit flow.
 
 After approval, execute the following sequence without interruption:
 
 1. **Pre-checkout safety check**: Run `git status --porcelain` and confirm no uncommitted changes exist outside the target sub-app directory. If any exist, warn the user and stop.
 2. `git checkout <target-branch>` — switch to the target branch before committing. If the local branch does not exist, run `git checkout -b <target-branch> origin/<target-branch>` to create a local tracking branch.
-3. `git add` — restrict scope to the target sub-app directory only.
-4. `git commit -m "..."` — commit with the confirmed message.
-5. `git push origin <target-branch>` — push only this branch to origin:
+3. **For each commit group (in order):**
+   - `git add <group-files>` — stage only the files belonging to this group.
+   - `git commit -m "..."` — commit with this group's validated message.
+   - If this commit fails, stop immediately and report which group failed; do not proceed to the next group.
+4. `git push origin <target-branch>` — push once after all commits are done:
 
    | Scope   | Target Branch |
    |---------|---------------|
@@ -166,9 +231,9 @@ After approval, execute the following sequence without interruption:
    | intro   | intro-web     |
    | root    | main          |
 
-6. `git checkout main` — return to main branch after push. **Skip this step if scope is `root`** (already on main).
+5. `git checkout main` — return to main branch after push. **Skip this step if scope is `root`** (already on main).
 
-On success, report the commit hash to the user.
+On success, report all commit hashes to the user (one per line for multi-commit).
 
 **Never create a PR.** If the user requests a PR creation or merge, refuse and explain why (project rule: PRs are forbidden).
 
