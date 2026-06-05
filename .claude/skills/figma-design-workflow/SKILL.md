@@ -1,22 +1,21 @@
 ---
 name: figma-design-workflow
 description: >-
-  Orchestrates the full design phase for all 4 frontend projects in this
-  monorepo: React Native (Expo) mobile apps (prac-fe-app-driver,
-  prac-fe-app-user) AND web apps (prac-fe-web-manager: React+Vite SPA,
-  prac-fe-web-intro: Next.js App Router). Reads .ai/CONVENTIONS.md and
-  .ai/DESIGN.md (and .ai/API.md when available) to synthesize a structured
-  design proposal, presents it for human review, then generates Figma screens
-  via Figma MCP after approval — always gating Figma calls behind explicit
-  user confirmation. API.md is optional; the skill produces a full proposal
-  even when it is absent. Use this skill whenever the user wants to start the design
-  phase, plan UI before writing code, or draw screens in Figma for any app
-  in this monorepo. Trigger for Korean: "디자인 시작해줘", "figma 그려줘",
-  "화면 디자인해줘", "디자인부터 시작해줘", "figma에 그려줘", "웹 디자인해줘",
+  MANDATORY skill — invoke INSTEAD of writing code whenever any UI screen,
+  page, or component design is requested for this monorepo's 4 apps.
+  Do NOT use the frontend-design skill for this project.
+  Reads .ai/ spec files, synthesizes a design proposal, then draws in Figma after approval.
+  Works even when DESIGN.md is empty — uses style direction from the user's request instead.
+  Trigger for Korean: "디자인해줘", "디자인해달라", "디자인해주세요",
+  "UI 그려줘", "화면 그려줘", "디자인 해줘", "디자인 작업해줘", "figma 시작해줘",
+  "디자인 시작해줘", "figma 그려줘", "화면 디자인해줘", "디자인부터 시작해줘",
+  "figma에 그려줘", "웹 디자인해줘", "[스타일]로 디자인해줘",
+  "[회사명] 디자인으로 해줘", "[화면명] 화면 디자인해줘",
   "관리자 화면 그려줘", "인트로 페이지 디자인해줘", "관리자 웹 디자인해줘".
   Trigger for English: "design first", "start design", "draw in figma",
   "generate figma screens", "design the web app", "design the admin panel",
-  "design the landing page", "design the intro page".
+  "design the landing page", "design the intro page", "design this", "design it",
+  "design with [style] style", "use [company] design".
   Always use this skill before any code is written for a new screen or feature
   in any of the four apps.
 ---
@@ -24,6 +23,9 @@ description: >-
 # figma-design-workflow
 
 Bridges the app's design spec files (.ai/) to Figma screens with a human approval gate in between. The key principle: read what was specified, synthesize a coherent proposal, get the human's sign-off on structure, *then* draw in Figma. This order matters — Figma generation is not free to revise, so confirming the structure first prevents wasted work.
+
+> **DESIGN-ONLY BOUNDARY**
+> This skill produces **Figma screens only**. It MUST NOT generate, scaffold, or modify any source code file at any point — regardless of whether code already exists in the app. Code generation begins only after the user explicitly says "구현 시작해줘" or "코드 작성해줘" in a separate conversation turn.
 
 ## Platform Frame Standards
 
@@ -56,8 +58,15 @@ Determine which of the 4 apps the task is for, and classify its platform.
 | prac-fe-web-manager | web | React + Vite SPA | 8-3 |
 | prac-fe-web-intro | web | Next.js (App Router) | 8-4 |
 
-- Look at recently modified files or explicit mention in the user's request
-- If genuinely ambiguous, ask: "driver, user, web-manager, web-intro 중 어느 앱의 디자인을 시작할까요?"
+Detection priority (highest to lowest):
+1. **CWD first**: If the working context is inside one of the 4 app directories
+   (`prac-fe-app-driver/`, `prac-fe-app-user/`, `prac-fe-web-manager/`, `prac-fe-web-intro/`),
+   use that app. This overrides all other signals.
+2. **Explicit mention**: If the user's request names an app directly, use that.
+3. **Recently modified files**: If CWD is the repo root and no app is named,
+   look at which app directory had the most recent file changes.
+4. **Ambiguous fallback**: If still unclear, ask:
+   "driver, user, web-manager, web-intro 중 어느 앱의 디자인을 시작할까요?"
 - Set `platform = "mobile"` for driver/user, `platform = "web"` for manager/intro — this drives template branching in Steps 2 and 4
 
 ## Step 1 — Read Design Spec Files
@@ -70,12 +79,21 @@ Attempt to read all available files in parallel from the detected app's `.ai/` d
 | `.ai/CONVENTIONS.md` | Preferred | Naming rules, folder structure, component patterns |
 | `.ai/DESIGN.md` | Preferred | Screen/page list, design tokens, component library |
 
+**IMPORTANT**: Read ONLY files under the `.ai/` directory. Do NOT read `src/`, `app/`, `components/`, or any other source code files — this skill operates from specs and user intent alone, not from existing code. **When no code exists yet**: this is the expected state. Missing `.ai/` files or empty spec files are handled by inference (Step 2). Never fail or pause because source code doesn't exist.
+
 **API.md is optional.** If the file does not exist or is empty, do not treat it as an error — skip it silently and set `has_api_spec = false`. When it is missing, infer data display needs from:
 - Screen/component names in `DESIGN.md` (e.g., "OrderListScreen" implies a list of orders with status fields)
 - Component and naming patterns in `CONVENTIONS.md`
 - Any data context the user explicitly mentioned in their request
 
 If `CONVENTIONS.md` or `DESIGN.md` is empty or contains only template comments, note it briefly and continue — partial information still produces a useful proposal.
+
+**When DESIGN.md is empty AND the user specifies a style reference** (e.g., "TOSS 디자인으로 해줘", "카카오 스타일로", "Material Design으로"):
+- Do NOT abort or skip to implementation
+- Treat the named brand/style as the design token source
+- In the proposal, document inferred design tokens based on that brand's known design system (colors, typography, spacing, component patterns)
+- Mark these tokens as `[추론됨 — {brand} 디자인 시스템 기반]` so the user knows they are inferred, not from DESIGN.md
+- Proceed normally through Steps 2–5
 
 ## Step 2 — Synthesize Design Proposal
 
@@ -143,6 +161,8 @@ If the user requests changes ("홈 화면에 검색 바 추가해줘"), update t
 
 ## Step 4 — Generate Figma Screens
 
+> Reminder: This step generates Figma frames only. Do not write or scaffold any code file.
+
 After approval:
 
 1. Load `/figma-generate-design` skill — mandatory prerequisite before any Figma MCP call
@@ -178,7 +198,9 @@ Figma 링크: [url]
   승인하면        → "구현 시작해줘" 또는 "코드 작성해줘"
 ```
 
-Stop here. Do not begin code generation. Phase C starts only on explicit user approval.
+**HARD STOP. This skill ends here.**
+Do NOT write code. Do NOT scaffold files. Do NOT call any code generation tool.
+The next phase (code implementation) begins only when the user explicitly says "구현 시작해줘" or "코드 작성해줘" in a new message — never automatically.
 
 ---
 
