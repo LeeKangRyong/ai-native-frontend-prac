@@ -202,7 +202,8 @@ If the user requests changes ("홈 화면에 검색 바 추가해줘"), update t
       - ScrollView 콘텐츠 시작: y = 59 + HeaderHeight
       - FAB/Floating 요소: y ≤ 776
       - y < 59 또는 y > 810 구간에는 어떤 콘텐츠 요소도 배치하지 않음
-   c. Safe Area 컴포넌트 오버레이는 Step 6(하이파이)에서 적용 — 와이어프레임에는 불필요
+   c. Safe Area 컴포넌트 (key: `00bfa96bea64def82819c61edd40191f09294123`) 를 x=0, y=0에 오버레이
+      — 와이어프레임에서도 Safe Area 경계를 명확히 표시 (디자인 레퍼런스 전용, 코드에 구현하지 않음)
 
    **Web**:
    a. 프레임 크기 1440 × 900 px
@@ -275,6 +276,11 @@ Figma 링크: [url]
 **HARD STOP. This skill ends here.**
 Do NOT write code. Do NOT scaffold files. Do NOT call any code generation tool.
 The next phase (code implementation) begins only when the user explicitly says "구현 시작해줘" or "코드 작성해줘" in a new message — never automatically.
+
+> **⚠️ Safe Area 구현 주의사항**
+> Figma의 Safe Area 오버레이 컴포넌트는 **디자인 레퍼런스 전용**입니다.
+> 코드에서 Safe Area 경계선을 시각적으로 렌더링하지 마세요.
+> 실제 Safe Area 처리는 `react-native-safe-area-context`의 `SafeAreaView` 또는 `useSafeAreaInsets` 훅으로 처리합니다.
 
 ---
 

@@ -158,6 +158,7 @@ Spawn `oh-my-claudecode:critic` with all modified files + IMPLEMENT.md criteria 
 Checks:
 - Any `import` referencing a path outside the current sub-app directory
 - **mobile only**: hardcoded numeric padding top/bottom without `useSafeAreaInsets`
+- **mobile only**: Figma Safe Area 가이드선을 코드로 재현한 시각적 요소 금지 (e.g., `borderTopWidth`/`borderBottomWidth`로 화면 상단·하단에 경계선을 그리는 경우)
 - Naming convention violations from CONVENTIONS.md
 
 Returns `PASS` or `FAIL: <violation list>`.
