@@ -31,5 +31,6 @@ This Claude instance runs with `prac-fe-app-user/` as the working directory (tmu
 | `frontend-commit-push` | "커밋하고 푸시해줘" |
 | `figma-design-workflow` | "디자인 시작해줘" |
 | `frontend-implement-harness` | "구현 시작해줘" / "harness 돌려줘" |
+| `figma-style-guide` | "스타일 가이드 그려줘" |
 
 Git commit scope fixed to: `user`

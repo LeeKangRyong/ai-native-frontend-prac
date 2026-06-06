@@ -1,0 +1,23 @@
+{
+  "skill_name": "figma-style-guide",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "prac-fe-app-driver 디렉터리에서 실행 중입니다 (CWD: /home/kangr/ai-native-frontend-prac/prac-fe-app-driver). 스타일 가이드 그려줘.",
+      "expected_output": "driver 앱(node-id 8-2)의 Figma 페이지에 'Style Guide — prac-fe-app-driver' 프레임이 y=2200 위치에 생성되며, DESIGN.md의 Toss 디자인 시스템 토큰(Primary: #3182F6 등)이 Colors 섹션에 반영됨",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "prac-fe-app-user 디렉터리에서 실행 중입니다 (CWD: /home/kangr/ai-native-frontend-prac/prac-fe-app-user). style guide 만들어줘.",
+      "expected_output": "user 앱(node-id 0-1)의 Figma 페이지에 'Style Guide — prac-fe-app-user' 프레임이 y=2200에 생성됨. DESIGN.md가 거의 비어있으므로 Colors 등 주요 섹션이 플레이스홀더(미입력)로 표시됨",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "web-manager 앱의 스타일 가이드 그려줘. (CWD: /home/kangr/ai-native-frontend-prac — 루트 디렉터리)",
+      "expected_output": "web-manager 앱(node-id 8-3)의 Figma 페이지에 'Style Guide — prac-fe-web-manager' 프레임이 y=2200에 생성됨. DESIGN.md가 비어있으므로 모든 섹션이 플레이스홀더로 표시됨",
+      "files": []
+    }
+  ]
+}
