@@ -47,3 +47,9 @@ prac-fe-web-intro/.env.*.local
 *.pem
 *.key
 *.p12
+
+# logs
+*.log
+
+# secret DOCS
+docs_secret/
