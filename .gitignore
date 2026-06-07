@@ -8,6 +8,9 @@ prac-fe-app-user/.omc/
 prac-fe-web-management/.omc/
 prac-fe-web-intro/.omc/
 
+# superpowers
+docs/superpowers/
+
 # node_modules (web only)
 prac-fe-web-management/node_modules/
 prac-fe-web-intro/node_modules/
